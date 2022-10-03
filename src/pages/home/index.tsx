@@ -1,5 +1,7 @@
+import BasicTable from '../../components/BasicTable';
+
 function Home() {
-  return <h1>React + Vite + Typescript</h1>;
+  return <BasicTable />;
 }
 
 export default Home;
