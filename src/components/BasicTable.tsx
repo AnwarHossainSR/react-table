@@ -10,9 +10,9 @@ import './table.css';
 function BasicTable() {
   const columns: any = useMemo(() => COLUMNS, []);
   const data = useMemo(() => MOCK_DATA, []);
-  const tableInstance = useTable({ columns, data });
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    tableInstance;
+    useTable({ columns, data });
+
   return (
     // apply the table props
     <table {...getTableProps()}>
