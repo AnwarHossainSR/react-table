@@ -10,8 +10,14 @@ import './table.css';
 function BasicTable() {
   const columns: any = useMemo(() => COLUMNS, []);
   const data = useMemo(() => MOCK_DATA, []);
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    footerGroups,
+    rows,
+    prepareRow,
+  } = useTable({ columns, data });
 
   return (
     // apply the table props
@@ -67,6 +73,28 @@ function BasicTable() {
           })
         }
       </tbody>
+      <tfoot>
+        {
+          // Loop over the header rows
+          footerGroups.map((footerGroup) => (
+            // Apply the header row props
+            <tr {...footerGroup.getFooterGroupProps()}>
+              {
+                // Loop over the headers in each row
+                footerGroup.headers.map((column) => (
+                  // Apply the header cell props
+                  <td {...column.getFooterProps()}>
+                    {
+                      // Render the Footer
+                      column.render('Footer')
+                    }
+                  </td>
+                ))
+              }
+            </tr>
+          ))
+        }
+      </tfoot>
     </table>
   );
 }
